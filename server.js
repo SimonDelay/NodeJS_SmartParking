@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 
 // Loading socket.io
 var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
+//var io = require('socket.io').listen(server);
 
 
 /*var r = require('rethinkdbdash')({
@@ -38,12 +38,12 @@ r.db("SimonDB").table('availabilities').run().then((avails) => {
 	
 //COULD BE PROBLEM THIS PART WHERE SOCKET AND FEED ARE INTEGRATED
 // When a client connects, we note it in the console
-io.sockets.on('connection', function (socket) {
+/*io.sockets.on('connection', function (socket) {
     console.log('A client is connected!');
 	
-});
+});*/
 
-var r = require('rethinkdbdash')({
+//var r = require('rethinkdbdash')({
 			//COMPOSE SERVER
 			/*servers: [{
 				host: "aws-us-east-1-portal.6.dblayer.com",
@@ -58,7 +58,7 @@ var r = require('rethinkdbdash')({
 			ssl: { rejectUnauthorized: false }*/
 			
 			//AZURE SERVER
-			host: 'rethinkdbsimon.southcentralus.cloudapp.azure.com',
+/*			host: 'rethinkdbsimon.southcentralus.cloudapp.azure.com',
 			port: 28015,
 			db: 'SimonDB',
 			buffer: 10,
