@@ -6,7 +6,7 @@ var app = require('./app');
 
 // Loading the index file . html displayed to the client
 app.get('/', function(req, res) {
-	res.sendFile( './views/index.html');
+	res.render( './views/index.html');
     //res.render('index.ejs');
 });
 
