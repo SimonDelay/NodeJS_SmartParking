@@ -6,8 +6,8 @@ var app = require('./app');
 
 // Loading the index file . html displayed to the client
 app.get('/', function(req, res) {
-	//res.sendFile(__dirname + '/views/indexejs.html');
-    res.render('index.ejs');
+	res.sendFile( './views/index.html');
+    //res.render('index.ejs');
 });
 
 // Loading socket.io
