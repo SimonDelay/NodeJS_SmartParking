@@ -11,8 +11,8 @@ app.use(express.static(__dirname + '/views'));
 // Loading the index file . html displayed to the client
 app.get('/', function(req, res) {
 	//res.sendFile(__dirname + '/views/indexejs.html');
-    //res.render('index.ejs');
-	res.render('./views/index.ejs');
+    res.render('index.ejs');
+	//res.render('./views/index.html');
 });
 
 // Loading socket.io
