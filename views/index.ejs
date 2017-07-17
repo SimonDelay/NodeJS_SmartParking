@@ -1,174 +1,212 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="angularJScontroller">
 <head>
-    <!-- META -->
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>Node/Angular App</title>
+    <title>Hosting Node App On Azure</title>
 
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-	<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:90px;}
-		
-		div.item{
-		  margin: 15px 50px;
-		  border-radius: 1px;
-		  padding: 5px;
-		}
-		.icon-lightbulb.Off{
-		  color: red;
-		  text-shadow: 1px 1px 10px #ff0000;
-		}
-		.icon-lightbulb.On{
-		  color: green;
-		  text-shadow: 1px 1px 10px #00ff00;
-		}
-		
-		#bg{
-			background: center center fixed transparent;
-			-webkit-background-size: 100% 100%;
-			-moz-background-size: 100% 100%;
-			-o-background-size: 100% 100%;
-			background-size: cover;
-			background-repeat: no-repeat;
-		}
-		
-	</style>
+    <!-- Bootstrap Core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <!-- Custom CSS -->
+    <link href="./css/shop-homepage.css" rel="stylesheet">
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS -->
-<body id="bg" ng-style="selBGImg" ng-controller="myController">
 
-		<!-- LOOP OVER THE availability IN $scope.availabilities  -->
-		<div class="item" ng-repeat="availability in availabilities">
-			<a href="https://www.google.fr/"><i class="icon-lightbulb icon-3x {{availability.status}}"></i></a> Lot {{availability.lot_id}}
-		</div>
-		
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            /*var socket = io.connect('http://localhost:8080');	
-			// This is the event we are emitting from Server.
-			socket.on('newpost',function(item) {
-				
-				console.log(item);
-				
-				console.log($scope.availabilities.length);
-				// on any change, we will first iterate through our pollData array.
-				// If any id matches, we will then update the vote count.
-				// $scope.apply will make the change in HTML screen.
-				for(var pollCounter = 0 ;pollCounter < $scope.pollData.length; pollCounter++) {
-				  if($scope.pollData[pollCounter].id === data.id) {
-					$scope.pollData[pollCounter].polls = data.polls;
-					$scope.$apply();
-				  }
-				}
-					
-				});*/
-        </script>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="https://nodejs.org/">Node</a>
+                    </li>
+                    <li>
+                        <a href="https://azure.microsoft.com/en-in/">Azure</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/">Github</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Node+Azure+Github</p>
+                <div class="list-group">
+                    <a href="https://nodejs.org/" class="list-group-item">Node</a>
+                    <a href="https://azure.microsoft.com/en-in/" class="list-group-item">Azure</a>
+                    <a href="https://github.com/" class="list-group-item">Github</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="./images/azure.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="./images/node.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="./images/Github.png" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="./images/azure-1.jpg" alt="">
+                            <div class="caption">
+                                
+                                <h4><a href="https://azure.microsoft.com/en-in/">Azure</a>
+                                </h4>
+                                <p>Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform. Move faster, do more and save money with IaaS + PaaS. <a target="_blank" href="https://azure.microsoft.com/en-in/">Try It</a>.</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="./images/node-1.jpg" alt="">
+                            <div class="caption">
+                                
+                                <h4><a href="https://nodejs.org/">Node.js</a>
+                                </h4>
+                                <p>Node.js is an open-source, cross-platform JavaScript runtime environment for developing a diverse variety of tools and applications</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="./images/Bootstrap.jpg" alt="">
+                            <div class="caption">
+                                
+                                <h4><a href="http://getbootstrap.com/">Bootstrap</a>
+                                </h4>
+                                <p>Bootstrap is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile-first web sites</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="./images/github-1.jpg" alt="">
+                            <div class="caption">
+                                
+                                <h4><a href="https://github.com/">Github</a>
+                                </h4>
+                                <p>GitHub is a web-based Git repository hosting service. It offers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its own features</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                
+                                <h4><a href="#">About Me</a>
+                                </h4>
+                                <p>I am a software Engineer From India ,I am intrested in Microsoft Technologies and FULL Stack/Mean Stack Applications </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Node+Azure+Github @2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
-
-<script>
-
-var webapp = angular.module('angularJScontroller', []);
-
-webapp.controller('myController', function($scope, $http) {
-	
-	$scope.data = [];
-	$scope.message = 'Hello from HomeController';
-	$scope.selBGImg = {
-        'background-image' : 'url(http://pad1.whstatic.com/images/thumb/4/4b/Use-Parking-Lot-Etiquette-Step-15.jpg/aid370867-v4-728px-Use-Parking-Lot-Etiquette-Step-15.jpg)'
-    };
-
-	// when landing on the page, get all availabilities (they will be in JSON format). Update : On one entry	
-    //var request = $http.get('/availabilities/59380565b0620626dcd80975');
-	var request = $http.get('/availabilities');
-    
-    request.success(function(data) {
-        $scope.availabilities = data;
-
-		/*if($scope.availability.status=="On") {
-		
-			$scope.onled = function() {
-				return 'icon-lightbulb icon-4x on';
-				//console.log('icon-lightbulb '+ $scope.availability.status);
-			}
-		} 
-		else if($scope.availability.status=="Off") {
-		
-			$scope.onled = function() {
-				return 'icon-lightbulb icon-4x off';
-				//console.log('icon-lightbulb '+ $scope.availability.status);
-			}
-		}*/
-		
-    });
-    request.error(function(data){
-        console.log('Error: ' + data);
-    });
-	
-		var socket = io.connect('http://localhost:8080');	
-		// This is the event we are emitting from Server.
-		socket.on('newpost',function(item) {
-			
-			console.log(item);
-			/*console.log(item.new_val.status);
-			console.log(item.new_val.lot_id);
-			console.log($scope.availabilities[0].lot_id);
-			console.log($scope.availabilities[1].lot_id);
-			console.log($scope.availabilities[2].lot_id);*/
-			console.log($scope.availabilities);
-			
-			
-			//ONLY ONE LED IS CHANGING
-			if($scope.availabilities[0].lot_id == item.new_val.lot_id) {
-					$scope.availabilities[0].status = item.new_val.status;
-					$scope.$apply();
-			}
-			else if($scope.availabilities[1].lot_id == item.new_val.lot_id) {
-					$scope.availabilities[1].status = item.new_val.status;
-					$scope.$apply();
-			}
-			else if($scope.availabilities[2].lot_id == item.new_val.lot_id) {
-					$scope.availabilities[2].status = item.new_val.status;
-					$scope.$apply();
-			}
-			
-			//console.log($scope.availabilities[1].status);
-			
-			//$scope.$apply();
-			
-			// on any change, we will first iterate through our pollData array.
-			// If any id matches, we will then update the vote count.
-			// $scope.apply will make the change in HTML screen.
-			/*for(var pollCounter = 0 ;pollCounter < $scope.pollData.length; pollCounter++) {
-				if($scope.pollData[pollCounter].id === data.id) {
-					$scope.pollData[pollCounter].polls = data.polls;
-					$scope.$apply();
-				}
-			}*/
-					
-		});
-	
-
-});
-
-</script>
-
-
