@@ -1,13 +1,18 @@
 
 // server.js - source: https://hackernoon.com/restful-api-design-with-node-js-26ccf66eab09
 
+var express =require('express');
 var fs = require('fs'); 
 var app = require('./app');
+var port=process.env.PORT || 3000;
+
+app.use(express.static(__dirname + '/views'));
 
 // Loading the index file . html displayed to the client
 app.get('/', function(req, res) {
 	//res.sendFile(__dirname + '/views/indexejs.html');
-    res.render('index.ejs');
+    //res.render('index.ejs');
+	res.render('./views/index.ejs');
 });
 
 // Loading socket.io
@@ -109,8 +114,8 @@ var r = require('rethinkdbdash')({
 	
 	
 //app.listen(8080);
-server.listen(8080);
-console.log('Magic happens on port 8080');
+server.listen(port);
+console.log('Magic happens on port' + port);
 
 /*
 var bodyParser = require('body-parser');				// call body-parser
