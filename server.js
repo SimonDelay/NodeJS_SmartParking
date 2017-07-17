@@ -31,8 +31,8 @@ app.get('/', function(req, res) {
 });*/
 
 // Loading socket.io
-/*var server = require('http').Server(app);
-var io = require('socket.io').listen(server);*/
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
 
 
 /*var r = require('rethinkdbdash')({
@@ -128,8 +128,8 @@ var r = require('rethinkdbdash')({
 	});*/
 	
 	
-app.listen(port);
-//server.listen(port);
+//app.listen(port);
+server.listen(port);
 console.log('Magic happens on port' + port);
 
 /*
