@@ -95,7 +95,33 @@ webapp.controller('myController', function($scope, $http) {
 	$scope.selBGImg = {
         'background-image' : 'url(http://pad1.whstatic.com/images/thumb/4/4b/Use-Parking-Lot-Etiquette-Step-15.jpg/aid370867-v4-728px-Use-Parking-Lot-Etiquette-Step-15.jpg)'
     };
+	
+	// when landing on the page, get all availabilities (they will be in JSON format). Update : On one entry	
+    //var request = $http.get('/availabilities/59380565b0620626dcd80975');
+	var request = $http.get('/availabilities');
+    
+    request.success(function(data) {
+        $scope.availabilities = data;
 
+		/*if($scope.availability.status=="On") {
+		
+			$scope.onled = function() {
+				return 'icon-lightbulb icon-4x on';
+				//console.log('icon-lightbulb '+ $scope.availability.status);
+			}
+		} 
+		else if($scope.availability.status=="Off") {
+		
+			$scope.onled = function() {
+				return 'icon-lightbulb icon-4x off';
+				//console.log('icon-lightbulb '+ $scope.availability.status);
+			}
+		}*/
+		
+    });
+    request.error(function(data){
+        console.log('Error: ' + data);
+    });
 
 });
 
