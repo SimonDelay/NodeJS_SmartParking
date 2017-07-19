@@ -95,7 +95,7 @@ webapp.controller('myController', function($scope, $http) {
 	$scope.selBGImg = {
         'background-image' : 'url(http://pad1.whstatic.com/images/thumb/4/4b/Use-Parking-Lot-Etiquette-Step-15.jpg/aid370867-v4-728px-Use-Parking-Lot-Etiquette-Step-15.jpg)'
     };
-	
+
 	// when landing on the page, get all availabilities (they will be in JSON format). Update : On one entry	
     //var request = $http.get('/availabilities/59380565b0620626dcd80975');
 	var request = $http.get('/availabilities');
@@ -122,6 +122,52 @@ webapp.controller('myController', function($scope, $http) {
     request.error(function(data){
         console.log('Error: ' + data);
     });
+	
+		//var socket = io.connect('http://localhost:3000'); // "+port" doesnt work	
+		var socket = io.connect('http://webservsmartparking.azurewebsites.net/');
+		
+		// This is the event we are emitting from Server.
+		socket.on('newpost',function(item) {
+			
+			console.log(item);
+			/*console.log(item.new_val.status);
+			console.log(item.new_val.lot_id);
+			console.log($scope.availabilities[0].lot_id);
+			console.log($scope.availabilities[1].lot_id);
+			console.log($scope.availabilities[2].lot_id);*/
+			console.log($scope.availabilities);
+			
+			
+			//ONLY ONE LED IS CHANGING
+			if($scope.availabilities[0].lot_id == item.new_val.lot_id) {
+					$scope.availabilities[0].status = item.new_val.status;
+					$scope.$apply();
+			}
+			else if($scope.availabilities[1].lot_id == item.new_val.lot_id) {
+					$scope.availabilities[1].status = item.new_val.status;
+					$scope.$apply();
+			}
+			else if($scope.availabilities[2].lot_id == item.new_val.lot_id) {
+					$scope.availabilities[2].status = item.new_val.status;
+					$scope.$apply();
+			}
+			
+			//console.log($scope.availabilities[1].status);
+			
+			//$scope.$apply();
+			
+			// on any change, we will first iterate through our pollData array.
+			// If any id matches, we will then update the vote count.
+			// $scope.apply will make the change in HTML screen.
+			/*for(var pollCounter = 0 ;pollCounter < $scope.pollData.length; pollCounter++) {
+				if($scope.pollData[pollCounter].id === data.id) {
+					$scope.pollData[pollCounter].polls = data.polls;
+					$scope.$apply();
+				}
+			}*/
+					
+		});
+	
 
 });
 
