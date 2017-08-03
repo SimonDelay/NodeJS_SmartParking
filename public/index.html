@@ -57,11 +57,10 @@
 
 		<!-- LOOP OVER THE availability IN $scope.availabilities  -->
 		<div class="item" ng-repeat="availability in availabilities">
-			<a href="https://www.google.fr/"><i class="icon-lightbulb icon-3x {{availability.status}}"></i></a> Lot {{availability.lot_id}}
+			<a onclick="directionFunction()"><i class="icon-lightbulb icon-3x {{availability.status}}"></i></a> Lot {{availability.lot_id}}
 		</div>
 		
-		<button onclick="directionFunction()">Direction</button>
-		
+
         <script src="/socket.io/socket.io.js"></script>
         <script>
             /*var socket = io.connect('http://localhost:8080');	
