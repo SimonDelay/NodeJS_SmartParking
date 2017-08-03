@@ -60,7 +60,7 @@
 			<a href="https://www.google.fr/"><i class="icon-lightbulb icon-3x {{availability.status}}"></i></a> Lot {{availability.lot_id}}
 		</div>
 		
-		<button onclick="myFunction()">Direction</button>
+		<button onclick="">Direction</button>
 		
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -91,7 +91,7 @@
 
 var webapp = angular.module('angularJScontroller', []);
 
-	var placemark = {
+	/*var placemark = {
 		"map_id": "5692462144159744",
 		"name": "Cantinella",
 		"type": "generic",
@@ -102,7 +102,7 @@ var webapp = angular.module('angularJScontroller', []);
 		
 	function myFunction() {
 		$Mr.getDirections(placemark);
-	}
+	}*/
 
 webapp.controller('myController', function($scope, $http) {
 	
