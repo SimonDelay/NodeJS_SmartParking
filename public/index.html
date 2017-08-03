@@ -89,20 +89,22 @@
 
 <script>
 
-var webapp = angular.module('angularJScontroller', []);
 
-	/*var placemark = {
-		"map_id": "5692462144159744",
-		"name": "Cantinella",
-		"type": "generic",
-		"y": 2322.919921875,
-		"x": 4231.376953125,
-		"id": "5692462144159744_5693417237512192"
-	}
+var placemark = {
+	"map_id": "5692462144159744",
+	"name": "Cantinella",
+	"type": "generic",
+	"y": 2322.919921875,
+	"x": 4231.376953125,
+	"id": "5692462144159744_5693417237512192"
+}
 		
-	function myFunction() {
-		$Mr.getDirections(placemark);
-	}*/
+function myFunction() {
+	$Mr.getDirections(placemark);
+
+}
+
+var webapp = angular.module('angularJScontroller', []);
 
 webapp.controller('myController', function($scope, $http) {
 	
