@@ -45,6 +45,7 @@
 
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//edit.meridianapps.com/sandbox/js/meridian-1.0.0.js" type="text/javascript"></script>
 	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
@@ -58,6 +59,8 @@
 		<div class="item" ng-repeat="availability in availabilities">
 			<a href="https://www.google.fr/"><i class="icon-lightbulb icon-3x {{availability.status}}"></i></a> Lot {{availability.lot_id}}
 		</div>
+		
+		<button onclick="myFunction()">Direction</button>
 		
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -87,6 +90,19 @@
 <script>
 
 var webapp = angular.module('angularJScontroller', []);
+
+	var placemark = {
+		"map_id": "5692462144159744",
+		"name": "Cantinella",
+		"type": "generic",
+		"y": 2322.919921875,
+		"x": 4231.376953125,
+		"id": "5692462144159744_5693417237512192"
+	}
+		
+	function myFunction() {
+		$Mr.getDirections(placemark);
+	}
 
 webapp.controller('myController', function($scope, $http) {
 	
